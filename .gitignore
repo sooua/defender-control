@@ -1,0 +1,15 @@
+# Rust build output
+/app/target/
+**/target/
+
+# Debug symbols
+*.pdb
+
+# Node (icon tooling only; not part of the build)
+node_modules/
+
+# OS / editor
+Thumbs.db
+.DS_Store
+.vscode/
+.idea/
