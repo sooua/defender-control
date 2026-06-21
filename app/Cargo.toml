@@ -1,6 +1,6 @@
 [package]
 name = "defender-control"
-version = "1.0.2"
+version = "1.0.3"
 description = "Windows Defender Control - Native Win32 App"
 authors = ["you"]
 edition = "2021"

@@ -12,7 +12,7 @@
   <img alt="UI" src="https://img.shields.io/badge/Win32_+_GDI-1f2328?style=flat-square&logo=windows11&logoColor=white" />
   <img alt="Size" src="https://img.shields.io/badge/binary_·_~300_KB-1f2328?style=flat-square" />
   <img alt="Runtime deps" src="https://img.shields.io/badge/runtime_deps_·_none-1f2328?style=flat-square" />
-  <img alt="Version" src="https://img.shields.io/badge/v1.0.2-1f2328?style=flat-square" />
+  <img alt="Version" src="https://img.shields.io/badge/v1.0.3-1f2328?style=flat-square" />
 </p>
 
 <p>

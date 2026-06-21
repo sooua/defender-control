@@ -1030,7 +1030,15 @@ fn on_disable(hwnd: HWND) {
         });
         let (ok, msg) = match result {
             Ok(Ok(())) => {
-                let st = defender::get_status();
+                // Defender's state can lag the operation, especially on slow or
+                // emulated (e.g. ARM) VMs — poll a few times before judging.
+                let mut st = defender::get_status();
+                let mut tries = 0;
+                while (st.real_time_protection_on || st.antivirus_enabled) && tries < 8 {
+                    sleep_ms(500);
+                    st = defender::get_status();
+                    tries += 1;
+                }
                 if !st.real_time_protection_on && !st.antivirus_enabled {
                     (true, s.msg_disable_ok.to_string())
                 } else {
@@ -1107,7 +1115,14 @@ fn on_enable(hwnd: HWND) {
         });
         let (ok, msg) = match result {
             Ok(Ok(())) => {
-                let st = defender::get_status();
+                // State can lag the operation on slow/emulated (e.g. ARM) VMs.
+                let mut st = defender::get_status();
+                let mut tries = 0;
+                while !(st.real_time_protection_on || st.antivirus_enabled) && tries < 8 {
+                    sleep_ms(500);
+                    st = defender::get_status();
+                    tries += 1;
+                }
                 if st.real_time_protection_on || st.antivirus_enabled {
                     (true, s.msg_enable_ok.to_string())
                 } else {
