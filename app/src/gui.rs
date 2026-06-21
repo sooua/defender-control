@@ -1042,6 +1042,19 @@ fn on_disable(hwnd: HWND) {
                 if !st.real_time_protection_on && !st.antivirus_enabled {
                     (true, s.msg_disable_ok.to_string())
                 } else {
+                    // Tamper Protection (when it can't be turned off programmatically,
+                    // as on hardened Windows 11) silently reverts every change. Tell
+                    // the user to disable it manually instead of a vague failure.
+                    if st.tamper_protection_on {
+                        unsafe {
+                            MessageBoxW(
+                                None,
+                                &HSTRING::from(s.msg_tamper_body),
+                                &HSTRING::from(s.msg_tamper_title),
+                                MB_OK | MB_ICONWARNING,
+                            );
+                        }
+                    }
                     (false, format!("{}{}", s.msg_op_fail, map_overall(&s, &st.overall_status)))
                 }
             }

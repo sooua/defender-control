@@ -142,6 +142,8 @@ pub struct Strings {
     pub btn_clear: &'static str,
     pub btn_more: &'static str,
     pub restore_point_desc: &'static str,
+    pub msg_tamper_title: &'static str,
+    pub msg_tamper_body: &'static str,
 }
 
 fn detect_lang() -> Lang {
@@ -221,6 +223,8 @@ pub fn get_strings() -> Strings {
             btn_clear: "清空",
             btn_more: "更多",
             restore_point_desc: "Defender Control - 系统配置更改",
+            msg_tamper_title: "需要先关闭篡改防护",
+            msg_tamper_body: "Windows 安全中心的「篡改防护」已开启,它会自动撤销本工具所做的更改,导致无法关闭 Defender。\n\n请打开:Windows 安全中心 → 病毒和威胁防护 → 管理设置,关闭「篡改防护」,然后重试。",
         },
         Lang::Ja => Strings {
             lang: Lang::Ja,
@@ -283,6 +287,8 @@ pub fn get_strings() -> Strings {
             btn_clear: "クリア",
             btn_more: "その他",
             restore_point_desc: "Defender Control - システム構成の変更",
+            msg_tamper_title: "改ざん防止を先に無効化してください",
+            msg_tamper_body: "Windows セキュリティの「改ざん防止」が有効です。本ツールの変更を自動的に元に戻すため、Defender を無効化できません。\n\nWindows セキュリティ → ウイルスと脅威の防止 → 設定の管理 を開き、「改ざん防止」をオフにしてから再試行してください。",
         },
         Lang::Ko => Strings {
             lang: Lang::Ko,
@@ -345,6 +351,8 @@ pub fn get_strings() -> Strings {
             btn_clear: "지우기",
             btn_more: "더보기",
             restore_point_desc: "Defender Control - 시스템 구성 변경",
+            msg_tamper_title: "먼저 변조 방지를 끄세요",
+            msg_tamper_body: "Windows 보안의 '변조 방지'가 켜져 있습니다. 이 도구가 적용한 변경을 자동으로 되돌리므로 Defender를 비활성화할 수 없습니다.\n\nWindows 보안 → 바이러스 및 위협 방지 → 설정 관리 에서 '변조 방지'를 끈 후 다시 시도하세요.",
         },
         _ => Strings {
             lang: Lang::En,
@@ -407,6 +415,8 @@ pub fn get_strings() -> Strings {
             btn_clear: "Clear",
             btn_more: "More",
             restore_point_desc: "Defender Control - System configuration change",
+            msg_tamper_title: "Turn off Tamper Protection first",
+            msg_tamper_body: "Windows Security's Tamper Protection is on. It automatically reverts the changes this tool makes, so Defender can't be disabled.\n\nOpen Windows Security \u{2192} Virus & threat protection \u{2192} Manage settings, turn off Tamper Protection, then try again.",
         },
     }
 }
