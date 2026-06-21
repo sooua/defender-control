@@ -195,5 +195,6 @@ cd app && cargo build --release
 <br/>
 
 <div align="center">
+<sub>Licensed under the <a href="LICENSE">MIT License</a> · © 2026 sooua</sub><br/>
 <sub>Rust · pure Win32 · no Electron, no WebView</sub>
 </div>
