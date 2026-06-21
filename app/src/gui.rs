@@ -975,7 +975,7 @@ fn on_disable(hwnd: HWND) {
                 .map_err(|e| format!("{}{}", s.msg_ti_fail, e))?;
 
             post_log(hwnd_copy, s.log_restore_point, LOG_STEP);
-            defender::create_restore_point();
+            defender::create_restore_point(s.restore_point_desc);
             sleep_ms(150);
 
             post_log(hwnd_copy, s.log_backup, LOG_STEP);

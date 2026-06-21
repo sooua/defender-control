@@ -141,6 +141,7 @@ pub struct Strings {
     pub btn_copy: &'static str,
     pub btn_clear: &'static str,
     pub btn_more: &'static str,
+    pub restore_point_desc: &'static str,
 }
 
 fn detect_lang() -> Lang {
@@ -219,6 +220,7 @@ pub fn get_strings() -> Strings {
             btn_copy: "复制",
             btn_clear: "清空",
             btn_more: "更多",
+            restore_point_desc: "Defender Control - 系统配置更改",
         },
         Lang::Ja => Strings {
             lang: Lang::Ja,
@@ -280,6 +282,7 @@ pub fn get_strings() -> Strings {
             btn_copy: "コピー",
             btn_clear: "クリア",
             btn_more: "その他",
+            restore_point_desc: "Defender Control - システム構成の変更",
         },
         Lang::Ko => Strings {
             lang: Lang::Ko,
@@ -341,6 +344,7 @@ pub fn get_strings() -> Strings {
             btn_copy: "복사",
             btn_clear: "지우기",
             btn_more: "더보기",
+            restore_point_desc: "Defender Control - 시스템 구성 변경",
         },
         _ => Strings {
             lang: Lang::En,
@@ -402,6 +406,7 @@ pub fn get_strings() -> Strings {
             btn_copy: "Copy",
             btn_clear: "Clear",
             btn_more: "More",
+            restore_point_desc: "Defender Control - System configuration change",
         },
     }
 }

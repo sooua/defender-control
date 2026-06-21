@@ -687,10 +687,10 @@ fn str_to_u16_array(s: &str) -> [u16; 256] {
     arr
 }
 
-pub fn create_restore_point() {
+pub fn create_restore_point(description: &str) {
     unsafe {
         let mut status = STATEMGRSTATUS::default();
-        let desc_arr = str_to_u16_array("Defender Control - 系统配置更改");
+        let desc_arr = str_to_u16_array(description);
 
         let rp = RESTOREPOINTINFOW {
             dwEventType: BEGIN_SYSTEM_CHANGE,
