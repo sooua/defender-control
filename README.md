@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/logo.png" width="96" alt="Defender Control" />
+<img src="landing/public/assets/logo.png" width="96" alt="Defender Control" />
 
 <h1>Defender Control</h1>
 
@@ -24,12 +24,12 @@
 
 <table>
   <tr>
-    <td align="center"><img src="docs/screenshot-en.png" width="320" alt="English" /><br/><sub>English</sub></td>
-    <td align="center"><img src="docs/screenshot-zh.png" width="320" alt="简体中文" /><br/><sub>简体中文</sub></td>
+    <td align="center"><img src="landing/public/assets/screenshot-en.png" width="320" alt="English" /><br/><sub>English</sub></td>
+    <td align="center"><img src="landing/public/assets/screenshot-zh.png" width="320" alt="简体中文" /><br/><sub>简体中文</sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="docs/screenshot-ja.png" width="320" alt="日本語" /><br/><sub>日本語</sub></td>
-    <td align="center"><img src="docs/screenshot-ko.png" width="320" alt="한국어" /><br/><sub>한국어</sub></td>
+    <td align="center"><img src="landing/public/assets/screenshot-ja.png" width="320" alt="日本語" /><br/><sub>日本語</sub></td>
+    <td align="center"><img src="landing/public/assets/screenshot-ko.png" width="320" alt="한국어" /><br/><sub>한국어</sub></td>
   </tr>
 </table>
 
@@ -39,6 +39,15 @@
 > Disabling Defender lowers your system's security. Use it only on machines you own. A restore point and registry backup are created, but **use at your own risk.**
 >
 > 关闭 Defender 会降低系统安全性，仅在自有设备上使用，风险自负。 · Defender を無効化するとセキュリティが低下します。自己責任で。 · Defender 비활성화는 보안을 약화시킵니다. 본인 책임 하에 사용하세요.
+
+<br/>
+
+## Repository layout
+
+This repo holds both the application and its website:
+
+- **[`app/`](app/)** — the Windows application: Rust, native Win32 + GDI, no runtime dependencies.
+- **[`landing/`](landing/)** — the marketing site at **[defender-control.errooe.com](https://defender-control.errooe.com)**: an Astro static site, deployed on Vercel (root directory `landing/`).
 
 <br/>
 
