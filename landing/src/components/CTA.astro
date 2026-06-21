@@ -1,0 +1,31 @@
+---
+const repo = 'https://github.com/sooua/defender-control';
+---
+
+<section class="cta">
+  <div class="container cta__inner">
+    <h2 class="cta__title" data-i18n="cta_title">Take control of Defender</h2>
+    <p class="cta__lead" data-i18n-html="cta_lead">Download the latest release, or build from source with <code>cargo build --release</code></p>
+    <div class="hero__cta">
+      <a class="btn btn--dark btn--lg" href={`${repo}/releases`} target="_blank" rel="noopener" data-i18n="cta_download">Download for Windows</a>
+      <a class="btn btn--ghost btn--lg" href={repo} target="_blank" rel="noopener" data-i18n="cta_github">View on GitHub</a>
+    </div>
+
+    <div class="warn" role="note">
+      <div class="warn__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+          <line x1="12" y1="9" x2="12" y2="13"></line>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+      </div>
+      <div class="warn__content">
+        <h3 class="warn__title" data-i18n="warn_tag">Use at your own risk</h3>
+        <p class="warn__body" data-i18n="warn_b">
+          Disabling Defender reduces your system's security. Use it only on machines you own. The tool creates a
+          restore point and a registry backup, but you remain responsible for how you use it.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

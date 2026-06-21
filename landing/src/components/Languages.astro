@@ -1,0 +1,29 @@
+---
+const shots = [
+  { src: '/assets/screenshot-en.png', alt: 'English UI', label: 'English' },
+  { src: '/assets/screenshot-zh.png', alt: 'Simplified Chinese UI', label: '简体中文' },
+  { src: '/assets/screenshot-ja.png', alt: 'Japanese UI', label: '日本語' },
+  { src: '/assets/screenshot-ko.png', alt: 'Korean UI', label: '한국어' },
+];
+---
+
+<section id="languages" class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="eyebrow" data-i18n="loc_eyebrow">Languages</span>
+      <h2 class="section__title" data-i18n="loc_title">Four languages, detected automatically</h2>
+      <p class="section__lead" data-i18n="loc_lead">简体中文, English, 日本語, and 한국어, detected from your system language and remembered when you switch</p>
+    </div>
+
+    <div class="grid grid--2 shots">
+      {
+        shots.map((s) => (
+          <figure class="shot">
+            <img src={s.src} alt={s.alt} loading="lazy" />
+            <figcaption class="mono-label">{s.label}</figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>

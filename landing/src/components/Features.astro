@@ -1,0 +1,55 @@
+---
+const features = [
+  {
+    k: 1,
+    title: 'One-click toggle',
+    body: 'One button switches real-time protection, antivirus, tamper protection, services, and drivers together, and its label follows the current state.',
+  },
+  {
+    k: 2,
+    title: 'Backup & restore',
+    body: 'The tool exports your Defender registry before disabling and restores it on enable. If no backup is found, it applies known-good defaults.',
+  },
+  {
+    k: 3,
+    title: 'TrustedInstaller-level',
+    body: 'It runs under a TrustedInstaller token to write the protected keys and PPL services that ordinary administrator rights cannot modify.',
+  },
+  {
+    k: 4,
+    title: 'Watch mode',
+    body: 'An optional logon task re-applies the changes the moment Windows tries to revert them. It waits on a registry event, so idle CPU stays near zero.',
+  },
+  {
+    k: 5,
+    title: 'Live status',
+    body: 'A status dot shows the overall state, with separate indicators for real-time, antivirus, and tamper protection, plus a per-service detail panel.',
+  },
+  {
+    k: 6,
+    title: 'Native & tiny',
+    body: 'Written in Rust against Win32 with hand-drawn GDI. The release binary is around 300 KB and ships with no WebView and no runtime dependencies.',
+  },
+];
+---
+
+<section id="features" class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="eyebrow" data-i18n="feat_eyebrow">Features</span>
+      <h2 class="section__title" data-i18n="feat_title">Everything in one window</h2>
+      <p class="section__lead" data-i18n="feat_lead">The whole tool is a single owner-drawn Win32 window that opens instantly and behaves the same on every machine</p>
+    </div>
+
+    <div class="grid grid--3">
+      {
+        features.map((f) => (
+          <article class="card">
+            <h3 class="card__title" data-i18n={`feat${f.k}_t`}>{f.title}</h3>
+            <p class="card__body" data-i18n={`feat${f.k}_b`}>{f.body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

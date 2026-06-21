@@ -1,0 +1,40 @@
+---
+// Static markup — metrics + monospace "console" card.
+---
+
+<section id="tech" class="section section--bordered">
+  <div class="container grid grid--split">
+    <div>
+      <span class="eyebrow" data-i18n="tech_eyebrow">Under the hood</span>
+      <h2 class="section__title" data-i18n="tech_title">Built close to the metal</h2>
+      <p class="section__lead" data-i18n="tech_lead">There is no framework in between, so the binary calls Win32 directly</p>
+      <div class="metrics">
+        <div class="metric">
+          <span class="metric__num">~300<span class="metric__unit">KB</span></span>
+          <span class="metric__desc" data-i18n="metric1_d">Stripped release binary</span>
+        </div>
+        <div class="metric">
+          <span class="metric__num">0</span>
+          <span class="metric__desc" data-i18n="metric2_d">Runtime dependencies</span>
+        </div>
+        <div class="metric">
+          <span class="metric__num">~0<span class="metric__unit">%</span></span>
+          <span class="metric__desc" data-i18n="metric3_d">Idle CPU in watch mode</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="codecard">
+      <div class="codecard__bar">
+        <span class="mono-label">suppression-surface</span>
+      </div>
+      <pre class="codecard__body"><code><span class="c-key">policy</span>     Defender policy registry keys
+<span class="c-key">services</span>   driver &amp; service <span class="c-str">Start</span> types
+<span class="c-key">altitude</span>   remove <span class="c-str">WdFilter</span> altitude value
+<span class="c-key">ppl</span>        strip service PPL flags
+<span class="c-key">mp</span>         Set-MpPreference (PowerShell)
+<span class="c-key">ifeo</span>       block <span class="c-str">mpcmdrun.exe</span>
+<span class="c-key">token</span>      impersonate TrustedInstaller</code></pre>
+    </div>
+  </div>
+</section>

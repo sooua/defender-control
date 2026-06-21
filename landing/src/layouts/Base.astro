@@ -1,0 +1,133 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Defender Control · Toggle Windows Defender in one click',
+  description = 'A native Win32 tool to disable and re-enable Windows Defender from a single, state-aware button. Tiny, reversible, no dependencies.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="generator" content={Astro.generator} />
+
+    <meta property="og:title" content="Defender Control" />
+    <meta
+      property="og:description"
+      content="Toggle Windows Defender from a single button. Native Win32, ~300 KB, fully reversible."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/assets/screenshot-en.png" />
+
+    <link rel="icon" href="/assets/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Set theme + language before first paint (no flash) -->
+    <script is:inline>
+      (function () {
+        try {
+          var d = document.documentElement;
+          var theme = localStorage.getItem('theme') ||
+            (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          d.dataset.theme = theme;
+          var lang = localStorage.getItem('lang');
+          if (!lang) {
+            var n = (navigator.language || 'en').toLowerCase();
+            lang = n.indexOf('zh') === 0 ? 'zh' : n.indexOf('ja') === 0 ? 'ja' : n.indexOf('ko') === 0 ? 'ko' : 'en';
+          }
+          d.dataset.lang = lang;
+          d.lang = lang === 'zh' ? 'zh-CN' : lang;
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <slot />
+
+    <script>
+      import { t, SHORT, type Lang } from '../i18n';
+
+      const root = document.documentElement;
+      const isLang = (l: string | null | undefined): l is Lang => !!l && l in t;
+
+      function applyLang(lang: Lang) {
+        const dict = t[lang];
+        document.querySelectorAll<HTMLElement>('[data-i18n]').forEach((el) => {
+          const v = dict[el.dataset.i18n as string];
+          if (v != null) el.textContent = v;
+        });
+        document.querySelectorAll<HTMLElement>('[data-i18n-html]').forEach((el) => {
+          const v = dict[el.dataset.i18nHtml as string];
+          if (v != null) el.innerHTML = v;
+        });
+        root.dataset.lang = lang;
+        root.lang = lang === 'zh' ? 'zh-CN' : lang;
+        try { localStorage.setItem('lang', lang); } catch (e) {}
+        const cur = document.getElementById('langCurrent');
+        if (cur) cur.textContent = SHORT[lang];
+        document.querySelectorAll<HTMLElement>('[data-lang-opt]').forEach((o) => {
+          o.setAttribute('aria-selected', o.dataset.langOpt === lang ? 'true' : 'false');
+        });
+      }
+
+      function applyTheme(theme: 'light' | 'dark') {
+        root.dataset.theme = theme;
+        try { localStorage.setItem('theme', theme); } catch (e) {}
+        document.getElementById('themeToggle')?.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+        document
+          .querySelector('meta[name="theme-color"]')
+          ?.setAttribute('content', theme === 'dark' ? '#0a0a0a' : '#ffffff');
+      }
+
+      // Initialise from the dataset the inline head script already set
+      applyLang(isLang(root.dataset.lang) ? root.dataset.lang : 'en');
+      applyTheme(root.dataset.theme === 'dark' ? 'dark' : 'light');
+
+      // Theme toggle
+      document.getElementById('themeToggle')?.addEventListener('click', () => {
+        applyTheme(root.dataset.theme === 'dark' ? 'light' : 'dark');
+      });
+
+      // Language menu
+      const menu = document.getElementById('langMenu');
+      const langBtn = document.getElementById('langBtn');
+      function closeMenu() {
+        menu?.classList.remove('is-open');
+        langBtn?.setAttribute('aria-expanded', 'false');
+      }
+      langBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = menu?.classList.toggle('is-open');
+        langBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      document.querySelectorAll<HTMLElement>('[data-lang-opt]').forEach((o) => {
+        o.addEventListener('click', () => {
+          if (isLang(o.dataset.langOpt)) applyLang(o.dataset.langOpt);
+          closeMenu();
+        });
+      });
+      document.addEventListener('click', (e) => {
+        if (menu && !menu.contains(e.target as Node)) closeMenu();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+      });
+    </script>
+  </body>
+</html>

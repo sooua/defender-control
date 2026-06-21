@@ -1,0 +1,59 @@
+---
+import { LANGS } from '../i18n';
+const repo = 'https://github.com/sooua/defender-control';
+---
+
+<header class="nav">
+  <div class="nav__inner container">
+    <a class="nav__brand" href="#top">
+      <img src="/assets/logo.png" alt="" width="24" height="24" />
+      <span>Defender&nbsp;Control</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#features" data-i18n="nav_features">Features</a>
+      <a href="#how" data-i18n="nav_how">How it works</a>
+      <a href="#languages" data-i18n="nav_languages">Languages</a>
+      <a href="#tech" data-i18n="nav_tech">Tech</a>
+    </nav>
+
+    <div class="nav__actions">
+      <div class="controls">
+        <!-- Theme toggle -->
+        <button class="iconbtn theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- Language menu -->
+        <div class="langmenu" id="langMenu">
+          <button class="iconbtn langmenu__btn" id="langBtn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Change language">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span id="langCurrent">EN</span>
+          </button>
+          <ul class="langmenu__list" id="langList" role="listbox" aria-label="Language">
+            {
+              LANGS.map((l) => (
+                <li>
+                  <button type="button" data-lang-opt={l.code} role="option" aria-selected={l.code === 'en' ? 'true' : 'false'}>
+                    {l.label}
+                  </button>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <a class="btn btn--ghost nav__github" href={repo} target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn--dark" href={`${repo}/releases`} target="_blank" rel="noopener" data-i18n="nav_download">Download</a>
+    </div>
+  </div>
+</header>

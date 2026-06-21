@@ -1,0 +1,109 @@
+---
+const repo = 'https://github.com/sooua/defender-control';
+
+const slides = [
+  { src: '/assets/screenshot-en.png', alt: 'Defender Control running in English', dot: 'EN', label: 'English' },
+  { src: '/assets/screenshot-zh.png', alt: 'Defender Control running in Simplified Chinese', dot: '中', label: '简体中文' },
+  { src: '/assets/screenshot-ja.png', alt: 'Defender Control running in Japanese', dot: '日', label: '日本語' },
+  { src: '/assets/screenshot-ko.png', alt: 'Defender Control running in Korean', dot: '한', label: '한국어' },
+];
+---
+
+<section class="hero">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    <span class="badge" data-i18n="hero_badge">Native Win32 · ~300 KB · Zero dependencies</span>
+    <h1 class="hero__title" data-i18n-html="hero_title">Toggle Windows&nbsp;Defender<br />in one&nbsp;click</h1>
+    <p class="hero__subtitle" data-i18n="hero_subtitle">
+      A native Windows tool that turns Defender off and back on from a single button, writing a
+      registry backup and a restore point first so every change can be undone
+    </p>
+    <div class="hero__cta">
+      <a class="btn btn--dark btn--lg" href={`${repo}/releases`} target="_blank" rel="noopener" data-i18n="hero_download">Download for Windows</a>
+      <a class="btn btn--ghost btn--lg" href={repo} target="_blank" rel="noopener" data-i18n="hero_source">View source</a>
+    </div>
+
+    <div class="hero__shot">
+      <div
+        class="carousel"
+        id="heroCarousel"
+        aria-roledescription="carousel"
+        aria-label="Defender Control in four languages"
+      >
+        <div class="carousel__track">
+          {
+            slides.map((s, k) => (
+              <img
+                class:list={['carousel__slide', { 'is-active': k === 0 }]}
+                src={s.src}
+                alt={s.alt}
+                width="439"
+                height="474"
+                loading={k === 0 ? 'eager' : 'lazy'}
+              />
+            ))
+          }
+        </div>
+      </div>
+      <div class="carousel__dots" role="tablist" aria-label="Choose language">
+        {
+          slides.map((s, k) => (
+            <button
+              class:list={['carousel__dot', { 'is-active': k === 0 }]}
+              type="button"
+              data-i={k}
+              aria-label={s.label}
+            >
+              {s.dot}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const root = document.getElementById('heroCarousel');
+  if (root) {
+    const slides = Array.from(root.querySelectorAll<HTMLElement>('.carousel__slide'));
+    const dots = Array.from(document.querySelectorAll<HTMLElement>('.carousel__dot'));
+    const DELAY = 2800;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let i = 0;
+    let timer: number | null = null;
+
+    function show(n: number) {
+      i = (n + slides.length) % slides.length;
+      slides.forEach((s, k) => s.classList.toggle('is-active', k === i));
+      dots.forEach((d, k) => {
+        d.classList.toggle('is-active', k === i);
+        d.setAttribute('aria-selected', k === i ? 'true' : 'false');
+      });
+    }
+    function stop() {
+      if (timer !== null) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+    function start() {
+      if (reduce) return;
+      stop();
+      timer = window.setInterval(() => show(i + 1), DELAY);
+    }
+
+    dots.forEach((d) =>
+      d.addEventListener('click', () => {
+        show(Number(d.dataset.i));
+        start();
+      })
+    );
+    root.addEventListener('mouseenter', stop);
+    root.addEventListener('mouseleave', start);
+    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+
+    show(0);
+    start();
+  }
+</script>

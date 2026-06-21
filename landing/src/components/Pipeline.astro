@@ -1,0 +1,43 @@
+---
+// Static markup — step bodies contain inline <code> spans.
+---
+
+<section id="how" class="section section--bordered">
+  <div class="container">
+    <div class="section__head">
+      <span class="eyebrow" data-i18n="how_eyebrow">How it works</span>
+      <h2 class="section__title" data-i18n="how_title">Recorded on the way down, replayed on the way back</h2>
+      <p class="section__lead" data-i18n="how_lead">
+        Disabling runs under a TrustedInstaller token and is captured in full, so enabling restores the previous state exactly
+      </p>
+    </div>
+
+    <div class="pipeline">
+      <div class="step">
+        <span class="step__label step__label--develop" data-i18n="step1_label">01 · Back up</span>
+        <h3 class="step__title" data-i18n="step1_t">Snapshot &amp; restore point</h3>
+        <p class="step__body" data-i18n="step1_b">
+          Before any change, the tool creates a System Restore point and exports the Defender registry keys it is about to modify.
+        </p>
+      </div>
+      <div class="step__arrow" aria-hidden="true">→</div>
+      <div class="step">
+        <span class="step__label step__label--ship" data-i18n="step2_label">02 · Suppress</span>
+        <h3 class="step__title" data-i18n="step2_t">Apply under TI token</h3>
+        <p class="step__body" data-i18n-html="step2_b">
+          Policy keys, service <code>Start</code> types, WdFilter altitude, PPL flags,
+          <code>Set-MpPreference</code>, and an IFEO block on <code>mpcmdrun.exe</code>.
+        </p>
+      </div>
+      <div class="step__arrow" aria-hidden="true">→</div>
+      <div class="step">
+        <span class="step__label step__label--preview" data-i18n="step3_label">03 · Watch</span>
+        <h3 class="step__title" data-i18n="step3_t">Hold &amp; reverse</h3>
+        <p class="step__body" data-i18n-html="step3_b">
+          Watch mode waits on the key with <code>RegNotifyChangeKeyValue</code>. Enabling imports the backup and
+          restores every default.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
